@@ -39,11 +39,7 @@ const FizzBuzz = function () {
     };
 
     const list = function (start, end) {
-        let numbersListChunk = [];
-        for (let ii = start; ii <= end; ii++) {
-            numbersListChunk.push(numbersList[ii]);
-        }
-        return numbersListChunk;
+        return numbersList.slice(start, end + 1);
     };
 
     generateList();
