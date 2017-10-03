@@ -2,3 +2,4 @@ node_modules
 bower_components
 web/assets/build
 .nyc_output
+coverage
