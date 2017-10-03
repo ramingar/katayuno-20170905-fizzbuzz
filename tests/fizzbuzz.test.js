@@ -1,54 +1,6 @@
 import test from 'tape';
-
-// COMPONENT!!!! --------------------------------------------------------------------
-const Num = function (numObj) {
-    const {pos, value} = numObj;
-    return {pos, value}
-};
-
-const FizzBuzz = function (options = {range: {start: 1, end: 100}}) {
-
-    const FIZZ = 3;
-    const BUZZ = 5;
-    const TRANSFORM = {};
-    TRANSFORM[FIZZ] = 'Fizz';
-    TRANSFORM[BUZZ] = 'Buzz';
-
-    const {start, end} = options.range;
-    let listNumbers = [];
-
-    const isFizz = function (number) {
-        return isDivisible(FIZZ, number);
-    };
-
-    const isBuzz = function (number) {
-        return isDivisible(BUZZ, number);
-    };
-
-    const isDivisible = function (divisor, number) {
-        return 0 === number % divisor;
-    };
-
-    const print = function (requestedNumber) {
-        return listNumbers[requestedNumber.pos];
-    };
-
-    (() => {
-        for (let ii = start; ii <= end; ii++) {
-            let value = ii;
-            if (isFizz(ii) && isBuzz(ii)) {
-                value = TRANSFORM[FIZZ] + TRANSFORM[BUZZ];
-            } else if (isFizz(ii)) {
-                value = TRANSFORM[FIZZ];
-            } else if (isBuzz(ii)) {
-                value = TRANSFORM[BUZZ];
-            }
-            listNumbers[ii] = Num({pos: ii, value: value});
-        }
-    })();
-
-    return {print}
-};
+import Num from '../web/assets/src/js/num';
+import FizzBuzz from '../web/assets/src/js/fizzbuzz';
 
 // TESTS!!!! ------------------------------------------------------------------------
 test('-------- Component: returning the first element...', (assert) => {
@@ -99,17 +51,3 @@ test('-------- Component: returning the 15th element...', (assert) => {
 
     assert.end();
 });
-
-/*
-test('-------- Component: returning a list of the first 15th values...', (assert) => {
-    const message = 'Some value doesn\'t match';
-    const expected = [1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz'];
-
-    const fizzbuzz = FizzBuzz();
-    const actual = fizzbuzz.list(0, 14);
-
-    assert.deepEqual(actual, expected, message);
-
-    assert.end();
-});
-*/
